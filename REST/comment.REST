@@ -1,0 +1,13 @@
+GET http://localhost:8080/comment
+content-type: application/json
+
+
+###
+POST http://localhost:8080/comment
+content-type: application/json
+
+{
+  "postId": "6995a2baed562c1fb4333978",
+  "userId": "699573e0bfe8874330abfc0e",
+  "text": "Such cosmic beauty reminds us of the infinite potential of our universe and the possibilities we can achieve together. Let us look up, dream big, and strive for progress for our nation and humanity."
+}

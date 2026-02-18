@@ -4,6 +4,8 @@ import { loggerMiddleware } from "./middlewares/logger.middleware";
 import { errorMiddleware } from "./middlewares/error.middleware";
 import userRoute from "./routes/user.routes"
 import profileRoute from "./routes/profile.routes"
+import postRoute from "./routes/post.routes"
+import commentRoute from "./routes/comments.routes"
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(express.json());
 // routes
 app.use("/user", userRoute);
 app.use("/profile", profileRoute);
+app.use("/post", postRoute);
+app.use("/comment", commentRoute);
 
 app.use(errorMiddleware);
 
