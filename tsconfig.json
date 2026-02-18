@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    // File Layout
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Module & Target
+    "module": "commonjs",
+    "target": "es2020",
+
+    // Type checking
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "skipLibCheck": true,
+
+    // Node.js types
+    "types": ["node"],
+
+    // Source maps for debugging
+    "sourceMap": true,
+
+    // Module handling
+    "isolatedModules": true,
+    "esModuleInterop": true,
+
+    // Additional options
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
