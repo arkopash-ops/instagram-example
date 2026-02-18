@@ -8,6 +8,7 @@ const profileSchema = new Schema<ProfileDocument>({
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true,
+        unique: true,
     },
     fullname: {
         type: String,
@@ -16,12 +17,14 @@ const profileSchema = new Schema<ProfileDocument>({
     },
     bio: {
         type: String,
-        default: "",
+        default: "I'm new User.",
         trim: true,
+        set: (s: string) => s || "I'm new User."
     },
     profileImage: {
         type: String,
         default: "/public/images/default-profile.jpg",
+        set: (s: string) => s || "/public/images/default-profile.jpg"
     },
 }, {
     timestamps: true,

@@ -1,0 +1,14 @@
+GET http://localhost:8080/profile
+content-type: application/json
+
+
+###
+POST http://localhost:8080/profile
+content-type: application/json
+
+{
+  "userId": "699574f1bfe8874330abfc15",
+  "fullname": "Akshay Kumar",
+  "bio": "Mr.Khiladi",
+  "profileImage": ""
+}
