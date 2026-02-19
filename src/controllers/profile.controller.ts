@@ -43,3 +43,35 @@ export const _fetchAllProfile = async (
         next(error);
     }
 };
+
+
+export const _updateProfile = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { userId } = req.params;
+
+        if (!userId || typeof userId !== 'string') {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid userId parameter.",
+            });
+        }
+
+        const profile = await profileService.updateProfile(userId, {
+            fullname: req.body.fullname,
+            bio: req.body.bio,
+            profileImage: req.body.profileImage,
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile updated successfully.",
+            data: profile,
+        });
+    } catch (error) {
+        next(error);
+    }
+};

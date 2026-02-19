@@ -12,3 +12,13 @@ content-type: application/json
   "bio": "Mr.Khiladi",
   "profileImage": ""
 }
+
+
+###
+PATCH http://localhost:8080/profile/699574f1bfe8874330abfc15
+content-type: application/json
+
+{
+  "fullname": "Akshay Kumar",
+  "bio": "Black Belt"
+}

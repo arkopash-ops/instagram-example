@@ -1,13 +1,9 @@
 import { Types } from "mongoose";
 import ProfileModel, { ProfileDocument } from "../models/profile.model";
 import UserModel from "../models/user.model";
+import { Profile } from "../types/profile.types";
 
-interface IProfile {
-    userId: Types.ObjectId;
-    fullname: string;
-    bio?: string;
-    profileImage?: string;
-}
+interface IProfile extends Profile { }
 
 export const createProfile = async (data: IProfile): Promise<ProfileDocument> => {
     const userExists = await UserModel.findById(data.userId);
@@ -48,4 +44,34 @@ export const fetchAllProfile = async (): Promise<ProfileDocument[]> => {
     }
 
     return profiles;
+}
+
+
+export const updateProfile = async (
+    userId: string,
+    data: Partial<IProfile>
+): Promise<ProfileDocument> => {
+    const userExists = await UserModel.findById(userId);
+
+    if (!userExists) {
+        throw {
+            statusCode: 404,
+            message: "User not found.",
+        };
+    }
+
+    const updatedProfile = await ProfileModel.findOneAndUpdate(
+        { userId },
+        { $set: data },
+        { returnDocument: "after" }
+    );
+
+    if (!updatedProfile) {
+        throw {
+            statusCode: 404,
+            message: "Profile not found for this user.",
+        };
+    }
+
+    return updatedProfile;
 }

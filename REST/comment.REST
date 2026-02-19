@@ -16,3 +16,12 @@ content-type: application/json
   "userId": "699573e0bfe8874330abfc0e",
   "text": "Such cosmic beauty reminds us of the infinite potential of our universe and the possibilities we can achieve together. Let us look up, dream big, and strive for progress for our nation and humanity."
 }
+
+
+###
+patch http://localhost:8080/comment/6995a975bc6d64518d3902ba
+content-type: application/json
+
+{
+  "text": "Absolutely mesmerizing! Love the colors of the nebula. (-_<)"
+}

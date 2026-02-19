@@ -47,3 +47,33 @@ export const fetchPostByUser = async (userId: string): Promise<PostDocument[]> =
 
     return posts;
 }
+
+
+export const editPost = async (
+    postId: string,
+    data: Pick<IPost, "caption">
+): Promise<PostDocument> => {
+    const postExists = await PostModel.findById(postId);
+
+    if (!postExists) {
+        throw {
+            statusCode: 404,
+            message: "Post not found.",
+        };
+    }
+
+    const updatedPost = await PostModel.findOneAndUpdate(
+        { _id: postId },
+        { $set: data },
+        { returnDocument: "after" }
+    );
+
+    if (!updatedPost) {
+        throw {
+            statusCode: 500,
+            message: "Failed to update the Post.",
+        };
+    }
+
+    return updatedPost;
+}

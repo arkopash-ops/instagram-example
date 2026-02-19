@@ -46,3 +46,33 @@ export const fetchCommentsByPost = async (postId: string): Promise<CommentsDocum
 
     return comments;
 }
+
+
+export const editComment = async (
+    commentId: string,
+    data: Pick<IComment, "text">
+): Promise<CommentsDocument> => {
+    const commentExists = await CommentModel.findById(commentId);
+
+    if (!commentExists) {
+        throw {
+            statusCode: 404,
+            message: "Comment not found.",
+        };
+    }
+
+    const updatedComment = await CommentModel.findOneAndUpdate(
+        { _id: commentId },
+        { $set: data },
+        { returnDocument: "after" }
+    );
+
+    if (!updatedComment) {
+        throw {
+            statusCode: 500,
+            message: "Failed to update the Post.",
+        };
+    }
+
+    return updatedComment;
+}

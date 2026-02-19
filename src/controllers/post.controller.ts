@@ -7,7 +7,7 @@ export const _createPost = async (
     next: NextFunction
 ) => {
     try {
-        const Post = await postService.createPost({
+        const post = await postService.createPost({
             userId: req.body.userId,
             imageURL: req.body.imageURL,
             caption: req.body.caption
@@ -16,7 +16,7 @@ export const _createPost = async (
         return res.status(201).json({
             success: true,
             message: "Post created successfully.",
-            data: Post,
+            data: post,
         });
     } catch (error) {
         next(error);
@@ -69,5 +69,35 @@ export const _fetchPostByUser = async (
         });
     } catch (error) {
         next(error);
+    }
+}
+
+
+export const _editPost = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { postId } = req.params;
+
+        if (!postId || typeof postId !== 'string') {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid postId parameter.",
+            });
+        }
+
+        const post = await postService.editPost(postId, {
+            caption: req.body.caption,
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Post updated successfully.",
+            data: post,
+        });
+    } catch (error) {
+        next(error)
     }
 }

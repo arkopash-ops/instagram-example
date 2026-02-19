@@ -71,3 +71,33 @@ export const _fetchCommentsByPost = async (
         next(error);
     }
 }
+
+
+export const _editComment = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { commentId } = req.params;
+
+        if (!commentId || typeof commentId !== 'string') {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid commentId parameter.",
+            });
+        }
+
+        const comment = await commentService.editComment(commentId, {
+            text: req.body.text,
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Comment updated successfully.",
+            data: comment,
+        });
+    } catch (error) {
+        next(error)
+    }
+}
