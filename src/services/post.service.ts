@@ -1,4 +1,5 @@
 import PostModel, { PostDocument } from "../models/post.model";
+import CommentModel from "../models/comments.model";
 import { Post } from "../types/post.types";
 
 interface IPost extends Post { }
@@ -77,3 +78,28 @@ export const editPost = async (
 
     return updatedPost;
 }
+
+
+export const deletePost = async (postId: string): Promise<PostDocument> => {
+    const postExists = await PostModel.findById(postId);
+
+    if (!postExists) {
+        throw {
+            statusCode: 404,
+            message: "Post not found.",
+        };
+    }
+
+    await CommentModel.deleteMany({ postId });
+
+    const deletedPost = await PostModel.findByIdAndDelete(postId);
+
+    if (!deletedPost) {
+        throw {
+            statusCode: 500,
+            message: "Failed to delete the Post.",
+        };
+    }
+
+    return deletedPost;
+};

@@ -3,7 +3,7 @@ content-type: application/json
 
 
 ###
-GET http://localhost:8080/comment/post/6995a2baed562c1fb4333978
+GET http://localhost:8080/comment/post/6996bf9a8bd294266971ffb9
 content-type: application/json
 
 
@@ -25,3 +25,8 @@ content-type: application/json
 {
   "text": "Absolutely mesmerizing! Love the colors of the nebula. (-_<)"
 }
+
+
+###
+DELETE http://localhost:8080/comment/6995a975bc6d64518d3902ba
+content-type: application/json

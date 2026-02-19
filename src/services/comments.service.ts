@@ -76,3 +76,28 @@ export const editComment = async (
 
     return updatedComment;
 }
+
+
+export const deleteComment = async (
+    commentId: string
+): Promise<CommentsDocument> => {
+    const commentExists = await CommentModel.findById(commentId);
+
+    if (!commentExists) {
+        throw {
+            statusCode: 404,
+            message: "Comment not found.",
+        };
+    }
+
+    const deletedComment = await CommentModel.findByIdAndDelete(commentId);
+
+    if (!deletedComment) {
+        throw {
+            statusCode: 500,
+            message: "Failed to delete the Comment.",
+        };
+    }
+
+    return deletedComment;
+};

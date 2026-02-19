@@ -101,3 +101,31 @@ export const _editComment = async (
         next(error)
     }
 }
+
+
+export const _deleteComment = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { commentId } = req.params;
+
+        if (!commentId || typeof commentId !== "string") {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid commentId parameter.",
+            });
+        }
+
+        const deletedComment = await commentService.deleteComment(commentId);
+
+        return res.status(200).json({
+            success: true,
+            message: "Comment deleted successfully.",
+            data: deletedComment,
+        });
+    } catch (error) {
+        next(error);
+    }
+};

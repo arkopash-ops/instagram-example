@@ -7,7 +7,7 @@ POST http://localhost:8080/profile
 content-type: application/json
 
 {
-  "userId": "699574f1bfe8874330abfc15",
+  "userId": "6996c1858bd294266971ffe1",
   "fullname": "Akshay Kumar",
   "bio": "Mr.Khiladi",
   "profileImage": ""
@@ -15,10 +15,14 @@ content-type: application/json
 
 
 ###
-PATCH http://localhost:8080/profile/699574f1bfe8874330abfc15
+PATCH http://localhost:8080/profile/6996c1858bd294266971ffe1
 content-type: application/json
 
 {
   "fullname": "Akshay Kumar",
   "bio": "Black Belt"
 }
+
+###
+DELETE http://localhost:8080/profile/6996bf4f8bd294266971ffb3
+content-type: application/json

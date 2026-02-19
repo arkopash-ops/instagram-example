@@ -75,3 +75,31 @@ export const _updateProfile = async (
         next(error);
     }
 };
+
+
+export const _deleteProfile = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { userId } = req.params;
+
+        if (!userId || typeof userId !== "string") {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid userId parameter.",
+            });
+        }
+
+        const deletedProfile = await profileService.deleteProfile(userId);
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile, related User, Posts and Comments Deleted Successfully.",
+            data: deletedProfile,
+        });
+    } catch (error) {
+        next(error);
+    }
+};

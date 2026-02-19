@@ -101,3 +101,31 @@ export const _editPost = async (
         next(error)
     }
 }
+
+
+export const _deletePost = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { postId } = req.params;
+
+        if (!postId || typeof postId !== "string") {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid postId parameter.",
+            });
+        }
+
+        const deletedPost = await postService.deletePost(postId);
+
+        return res.status(200).json({
+            success: true,
+            message: "Post and related comments deleted successfully.",
+            data: deletedPost,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
