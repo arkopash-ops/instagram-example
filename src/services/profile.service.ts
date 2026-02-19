@@ -40,7 +40,7 @@ export const createProfile = async (data: IProfile): Promise<ProfileDocument> =>
 export const fetchAllProfile = async (): Promise<ProfileDocument[]> => {
     const profiles = await ProfileModel.find();
 
-    if (!profiles || profiles.length === 0) {
+    if (profiles.length === 0) {
         throw {
             statusCode: 400,
             message: "List is empty. No Profile found.",

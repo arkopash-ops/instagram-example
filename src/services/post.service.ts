@@ -24,7 +24,21 @@ export const createPost = async (data: IPost): Promise<PostDocument> => {
 export const fetchAllPosts = async (): Promise<PostDocument[]> => {
     const posts = await PostModel.find();
 
-    if (!posts || posts.length === 0) {
+    if (posts.length === 0) {
+        throw {
+            statusCode: 404,
+            message: "No Post found.",
+        }
+    }
+
+    return posts;
+}
+
+
+export const fetchPostByUser = async (userId: string): Promise<PostDocument[]> => {
+    const posts = await PostModel.find({ userId });
+
+    if (posts.length === 0) {
         throw {
             statusCode: 404,
             message: "No Post found.",

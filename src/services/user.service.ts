@@ -1,4 +1,4 @@
-import  UserModel, { UserDocument } from '../models/user.model';
+import UserModel, { UserDocument } from '../models/user.model';
 
 interface IUser {
     username: string;
@@ -29,7 +29,7 @@ export const createUser = async (data: IUser): Promise<UserDocument> => {
 export const fetchAllUser = async (): Promise<UserDocument[]> => {
     const users = await UserModel.find();
 
-    if (!users || users.length === 0) {
+    if (users.length === 0) {
         throw {
             statusCode: 400,
             message: "List is empty. No user found.",

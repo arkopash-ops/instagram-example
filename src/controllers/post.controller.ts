@@ -42,3 +42,32 @@ export const _fetchAllPost = async (
         next(error);
     }
 };
+
+
+export const _fetchPostByUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { userId } = req.params;
+
+        if (!userId || typeof userId !== 'string') {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid or missing userId parameter."
+            });
+        }
+
+        const posts = await postService.fetchPostByUser(userId);
+
+        return res.status(200).json({
+            success: true,
+            message: "User posts retrieved successfully.",
+            length: posts.length,
+            data: posts,
+        });
+    } catch (error) {
+        next(error);
+    }
+}

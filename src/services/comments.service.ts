@@ -24,7 +24,20 @@ export const createComment = async (data: IComment): Promise<CommentsDocument> =
 export const fetchAllComments = async (): Promise<CommentsDocument[]> => {
     const comments = await CommentModel.find();
 
-    if (!comments || comments.length === 0) {
+    if (comments.length === 0) {
+        throw {
+            statusCode: 404,
+            message: "There are no comments yet.",
+        }
+    }
+
+    return comments;
+}
+
+export const fetchCommentsByPost = async (postId: string): Promise<CommentsDocument[]> => {
+    const comments = await CommentModel.find({ postId });
+
+    if (comments.length === 0) {
         throw {
             statusCode: 404,
             message: "There are no comments yet.",

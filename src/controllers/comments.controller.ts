@@ -42,3 +42,32 @@ export const _fetchAllComments = async (
         next(error);
     }
 };
+
+
+export const _fetchCommentsByPost = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { postId } = req.params;
+
+        if (!postId || typeof postId !== 'string') {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid or missing postId parameter."
+            });
+        }
+
+        const comments = await commentService.fetchCommentsByPost(postId);
+
+        return res.status(200).json({
+            success: true,
+            message: "Post Comments retrived successfully.",
+            length: comments.length,
+            data: comments,
+        });
+    } catch (error) {
+        next(error);
+    }
+}
