@@ -7,18 +7,22 @@ POST http://localhost:8080/user/register
 content-type: application/json
 
 {
-  "username": "Test",
-  "email": "test@mail.com",
-  "password": "test123"
+  "username": "NarendraModi",
+  "email": "narendramodi@mail.com",
+  "password": "narendra123"
 }
 
 
 ###
 POST http://localhost:8080/user/login
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgyNCwiZXhwIjoxNzcxODM2NDI0fQ.LBrfjwNopkbneDCQKsCTZ4WCXU-2AL8RZWqSTjhIqm0
 
 {
-  "email": "test@mail.com",
-  "password": "test123"
+  "email": "AkshayKumar@mail.com",
+  "password": "akshay123"
 }
+
+
+###
+GET http://localhost:8080/user/699befb6c9e18fba71e4a0ca/posts
+content-type: application/json

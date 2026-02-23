@@ -52,6 +52,7 @@ export const fetchPostByUser = async (userId: string): Promise<PostDocument[]> =
 
 export const editPost = async (
     postId: string,
+    userId: string,
     data: Pick<IPost, "caption">
 ): Promise<PostDocument> => {
     const postExists = await PostModel.findById(postId);
@@ -64,7 +65,7 @@ export const editPost = async (
     }
 
     const updatedPost = await PostModel.findOneAndUpdate(
-        { _id: postId },
+        { _id: postId, userId },
         { $set: data },
         { returnDocument: "after" }
     );
@@ -80,7 +81,10 @@ export const editPost = async (
 }
 
 
-export const deletePost = async (postId: string): Promise<PostDocument> => {
+export const deletePost = async (
+    postId: string,
+    userId: string
+): Promise<PostDocument> => {
     const postExists = await PostModel.findById(postId);
 
     if (!postExists) {
@@ -90,7 +94,10 @@ export const deletePost = async (postId: string): Promise<PostDocument> => {
         };
     }
 
-    await CommentModel.deleteMany({ postId });
+    await CommentModel.deleteMany({
+        _id: postId,
+        userId
+    });
 
     const deletedPost = await PostModel.findByIdAndDelete(postId);
 

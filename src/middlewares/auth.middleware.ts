@@ -1,28 +1,23 @@
 import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../config/jwt";
+import UserModel from "../models/user.model";
 
-interface AuthRequest extends Request {
-    user?: any;
-}
-
-export const protect = (
-    req: AuthRequest,
+export const protect = async (
+    req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
         const authHeader = req.header("Authorization");
-        if (!authHeader) {
+
+        if (!authHeader?.startsWith("Bearer ")) {
             throw {
                 success: false,
                 message: "Authorization header missing",
             }
         }
 
-        const token = authHeader.startsWith("Bearer ")
-            ? authHeader.split(" ")[1]
-            : authHeader;
-
+        const token = authHeader.split(" ")[1];
         if (!token) {
             throw {
                 success: false,
@@ -30,11 +25,21 @@ export const protect = (
             }
         }
 
-        const decoded = verifyToken(token);
-        req.user = decoded;
+        const decoded = verifyToken(token) as { id: string };
 
+        const user = await UserModel.findById(decoded.id).select("-password");
+
+        if (!user) {
+            throw {
+                success: false,
+                message: "User not found",
+            }
+        }
+
+        req.user = user;
         next();
+
     } catch (error) {
-         next(error);
+        next(error);
     }
-}
+};

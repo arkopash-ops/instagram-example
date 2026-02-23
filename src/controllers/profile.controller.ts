@@ -8,7 +8,7 @@ export const _createProfile = async (
 ) => {
     try {
         const profile = await profileService.createProfile({
-            userId: req.body.userId,
+            userId: req.user!._id,
             fullname: req.body.fullname,
             bio: req.body.bio,
             profileImage: req.body.profileImage,
@@ -51,7 +51,7 @@ export const _updateProfile = async (
     next: NextFunction
 ) => {
     try {
-        const { userId } = req.params;
+        const userId = req.user!._id.toString();
 
         if (!userId || typeof userId !== 'string') {
             return res.status(400).json({
@@ -83,7 +83,7 @@ export const _deleteProfile = async (
     next: NextFunction
 ) => {
     try {
-        const { userId } = req.params;
+        const userId = req.user!._id.toString();
 
         if (!userId || typeof userId !== "string") {
             return res.status(400).json({

@@ -5,27 +5,27 @@ content-type: application/json
 ###
 POST http://localhost:8080/profile
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWJmMDBiYzllMThmYmE3MWU0YTBkMSIsImlhdCI6MTc3MTg0ODEzMSwiZXhwIjoxNzcxODUxNzMxfQ.txHWTtXcHaQ8sEcBNMUswL_NuowS9dkpciEj3egziHE
 
 {
-  "userId": "699befb6c9e18fba71e4a0ca",
-  "fullname": "Test Test",
-  "bio": "Only for Test.",
+  "userId": "699bf00bc9e18fba71e4a0d1",
+  "fullname": "Akshay Kumar",
+  "bio": "Indian Actor",
   "profileImage": ""
 }
 
 
 ###
-PATCH http://localhost:8080/profile/699c05f896ab1386222bc32b
+PATCH http://localhost:8080/profile/me
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMzYzAwODI3ZGJiYTk1YzlmMzY0OCIsImlhdCI6MTc3MTg0NjczNywiZXhwIjoxNzcxODUwMzM3fQ.T6xjSNNECAl9cfZu1ii7ZGHv3fmMkmSmXeZpCHX24gU
 
 {
-  "bio": "This is only Test"
+  "bio": "Prime Minister of India."
 }
 
 
 ###
-DELETE http://localhost:8080/profile/699c05f896ab1386222bc32b
+DELETE http://localhost:8080/profile/me
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMzYzAwODI3ZGJiYTk1YzlmMzY0OCIsImlhdCI6MTc3MTg0NjczNywiZXhwIjoxNzcxODUwMzM3fQ.T6xjSNNECAl9cfZu1ii7ZGHv3fmMkmSmXeZpCHX24gU

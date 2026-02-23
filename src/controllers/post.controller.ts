@@ -7,10 +7,26 @@ export const _createPost = async (
     next: NextFunction
 ) => {
     try {
+        if (!req.user) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized",
+            });
+        }
+
+        const { imageURL, caption } = req.body;
+
+        if (!imageURL || !caption) {
+            return res.status(400).json({
+                success: false,
+                message: "imageURL and caption are required",
+            });
+        }
+
         const post = await postService.createPost({
-            userId: req.body.userId,
-            imageURL: req.body.imageURL,
-            caption: req.body.caption
+            userId: req.user._id,
+            imageURL,
+            caption,
         });
 
         return res.status(201).json({
@@ -18,6 +34,7 @@ export const _createPost = async (
             message: "Post created successfully.",
             data: post,
         });
+
     } catch (error) {
         next(error);
     }
@@ -80,6 +97,7 @@ export const _editPost = async (
 ) => {
     try {
         const { postId } = req.params;
+        const userId = req.user!._id.toString();
 
         if (!postId || typeof postId !== 'string') {
             return res.status(400).json({
@@ -88,9 +106,11 @@ export const _editPost = async (
             });
         }
 
-        const post = await postService.editPost(postId, {
-            caption: req.body.caption,
-        });
+        const post = await postService.editPost(
+            postId,
+            userId,
+            { caption: req.body.caption }
+        );
 
         return res.status(200).json({
             success: true,
@@ -110,6 +130,7 @@ export const _deletePost = async (
 ) => {
     try {
         const { postId } = req.params;
+        const userId = req.user!._id.toString();
 
         if (!postId || typeof postId !== "string") {
             return res.status(400).json({
@@ -118,7 +139,7 @@ export const _deletePost = async (
             });
         }
 
-        const deletedPost = await postService.deletePost(postId);
+        const deletedPost = await postService.deletePost(postId, userId);
 
         return res.status(200).json({
             success: true,

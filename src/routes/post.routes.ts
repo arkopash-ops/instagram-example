@@ -5,11 +5,11 @@ import { protect } from "../middlewares/auth.middleware";
 const route = Router();
 
 route.get("/", postController._fetchAllPost);
+route.get("/user/:userId", postController._fetchPostByUser);
 
 route.use(protect)
 
 route.post("/", postController._createPost);
-route.get("/user/:userId", postController._fetchPostByUser);
 route.patch("/:postId", postController._editPost);
 route.delete("/:postId", postController._deletePost);
 

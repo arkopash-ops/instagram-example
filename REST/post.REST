@@ -3,27 +3,21 @@ content-type: application/json
 
 
 ###
-GET http://localhost:8080/post/user/699c05f896ab1386222bc32b
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
-
-
-###
 POST http://localhost:8080/post
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWJmMDBiYzllMThmYmE3MWU0YTBkMSIsImlhdCI6MTc3MTg0ODEzMSwiZXhwIjoxNzcxODUxNzMxfQ.txHWTtXcHaQ8sEcBNMUswL_NuowS9dkpciEj3egziHE
 
 {
-  "userId": "699c05f896ab1386222bc32b",
-  "imageURL": "https://cdn.pixabay.com/photo/2021/02/24/20/53/abstract-6047465_1280.jpg",
-  "caption": "Abstract Art"
+  "userId": "699bf0cbc9e18fba71e4a0da",
+  "imageURL": "https://cdn.pixabay.com/photo/2017/02/17/21/18/south-india-2075399_1280.jpg",
+  "caption": "Visiting Kerala."
 }
 
 
 ###
-patch http://localhost:8080/post/699c09d397222ed84c8fd009
+patch http://localhost:8080/post/699c2f9c79fb281f229598ba
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMzYzAwODI3ZGJiYTk1YzlmMzY0OCIsImlhdCI6MTc3MTg0NjczNywiZXhwIjoxNzcxODUwMzM3fQ.T6xjSNNECAl9cfZu1ii7ZGHv3fmMkmSmXeZpCHX24gU
 
 {
   "caption": "Abstract Art 1"
@@ -31,6 +25,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4O
 
 
 ###
-DELETE  http://localhost:8080/post/699c09d397222ed84c8fd009
+DELETE  http://localhost:8080/post/699c4ef84df848cb6fe330b2
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWJmMDBiYzllMThmYmE3MWU0YTBkMSIsImlhdCI6MTc3MTg1MTU4MiwiZXhwIjoxNzcxODU1MTgyfQ.fVaxpyENfP9edaTnLntAugNN6PDdiUPnqSuxM9siMFs

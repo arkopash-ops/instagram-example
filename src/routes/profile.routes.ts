@@ -9,7 +9,7 @@ route.get("/", profileController._fetchAllProfile);
 route.use(protect);
 
 route.post("/", profileController._createProfile);
-route.patch("/:userId", profileController._updateProfile);
-route.delete("/:userId", profileController._deleteProfile);
+route.patch("/me", profileController._updateProfile);
+route.delete("/me", profileController._deleteProfile);
 
 export default route;
