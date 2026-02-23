@@ -3,30 +3,34 @@ content-type: application/json
 
 
 ###
-GET http://localhost:8080/post/user/6996bf4f8bd294266971ffb3
+GET http://localhost:8080/post/user/699c05f896ab1386222bc32b
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
 
 
 ###
 POST http://localhost:8080/post
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
 
 {
-  "userId": "699574f1bfe8874330abfc15",
-  "imageURL": "https://cdn.pixabay.com/photo/2024/12/07/13/08/space-9250868_1280.jpg",
-  "caption": "Milkey way"
+  "userId": "699c05f896ab1386222bc32b",
+  "imageURL": "https://cdn.pixabay.com/photo/2021/02/24/20/53/abstract-6047465_1280.jpg",
+  "caption": "Abstract Art"
 }
 
 
 ###
-patch http://localhost:8080/post/6995a2baed562c1fb4333978
+patch http://localhost:8080/post/699c09d397222ed84c8fd009
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg
 
 {
-  "caption": "Beautiful Milky Way"
+  "caption": "Abstract Art 1"
 }
 
 
 ###
-DELETE  http://localhost:8080/post/6996b8306196243f20702d60
+DELETE  http://localhost:8080/post/699c09d397222ed84c8fd009
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgzNiwiZXhwIjoxNzcxODM2NDM2fQ.9sxiWHi7x3ZmPav8FRn4Y8OX65Wxd-UaO_8A30MFHXg

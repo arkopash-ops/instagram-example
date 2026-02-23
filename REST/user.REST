@@ -7,16 +7,18 @@ POST http://localhost:8080/user/register
 content-type: application/json
 
 {
-  "username": "LionelMessi",
-  "email": "LionelMessi@mail.com",
-  "password": "messi123"
+  "username": "Test",
+  "email": "test@mail.com",
+  "password": "test123"
 }
 
+
+###
 POST http://localhost:8080/user/login
 content-type: application/json
-Authorization: Bearer ...
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWMwNWY4OTZhYjEzODYyMjJiYzMyYiIsImlhdCI6MTc3MTgzMjgyNCwiZXhwIjoxNzcxODM2NDI0fQ.LBrfjwNopkbneDCQKsCTZ4WCXU-2AL8RZWqSTjhIqm0
 
 {
-  "email": "LionelMessi@mail.com",
-  "password": "messi123"
+  "email": "test@mail.com",
+  "password": "test123"
 }
