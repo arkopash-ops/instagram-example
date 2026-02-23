@@ -1,4 +1,6 @@
-import UserModel, { UserDocument } from '../models/user.model';
+import UserModel from '../models/user.model';
+import { generateToken } from '../config/jwt';
+import bcrypt from "bcryptjs";
 
 interface IUser {
     username: string;
@@ -6,8 +8,14 @@ interface IUser {
     password: string;
 }
 
+interface UserWithoutPassword {
+    _id: string;
+    username: string;
+    email: string;
+}
 
-export const createUser = async (data: IUser): Promise<UserDocument> => {
+
+export const register = async (data: IUser): Promise<{ user: UserWithoutPassword; token: string }> => {
     const userExists = await UserModel.findOne({ email: data.email });
     if (userExists) {
         throw {
@@ -16,17 +24,28 @@ export const createUser = async (data: IUser): Promise<UserDocument> => {
         };
     }
 
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(data.password, salt);
+
     const newUser = await UserModel.create({
         username: data.username,
         email: data.email,
-        password: data.password,
+        password: hashedPassword,
     });
 
-    return newUser;
+    const token = generateToken(newUser._id.toString());
+
+    const user: UserWithoutPassword = {
+        _id: newUser._id.toString(),
+        username: newUser.username,
+        email: newUser.email,
+    }
+
+    return { user, token };
 }
 
 
-export const fetchAllUser = async (): Promise<UserDocument[]> => {
+export const fetchAllRegisteredUser = async (): Promise<UserWithoutPassword[]> => {
     const users = await UserModel.find();
 
     if (users.length === 0) {
@@ -36,5 +55,11 @@ export const fetchAllUser = async (): Promise<UserDocument[]> => {
         }
     }
 
-    return users;
+    const myUserWithoutPassword: UserWithoutPassword[] = users.map(u => ({
+        _id: u._id.toString(),
+        username: u.username,
+        email: u.email,
+    }));
+
+    return myUserWithoutPassword;
 }

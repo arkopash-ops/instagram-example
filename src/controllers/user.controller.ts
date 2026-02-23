@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import * as userService from "../services/user.service";
 
-export const _createUser = async (
+export const _register = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        const user = await userService.createUser({
+        const { user, token } = await userService.register({
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
@@ -16,7 +16,7 @@ export const _createUser = async (
         res.status(201).json({
             success: true,
             message: "User created successfully.",
-            data: user,
+            data: { user, token },
         })
     } catch (error) {
         next(error);
@@ -24,19 +24,19 @@ export const _createUser = async (
 }
 
 
-export const _fetchAllUser = async (
+export const _fetchAllRegisteredUser = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        const user = await userService.fetchAllUser();
+        const users = await userService.fetchAllRegisteredUser();
 
         return res.status(200).json({
             success: true,
             message: "User retrived Successfully",
-            length: user.length,
-            user,
+            length: users.length,
+            users,
         })
     } catch (error) {
         next(error);
