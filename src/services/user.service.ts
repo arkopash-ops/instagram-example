@@ -15,7 +15,7 @@ interface UserWithoutPassword {
 }
 
 
-export const register = async (data: IUser): Promise<{ user: UserWithoutPassword; token: string }> => {
+export const registerUser = async (data: IUser): Promise<{ user: UserWithoutPassword; token: string }> => {
     const userExists = await UserModel.findOne({ email: data.email });
     if (userExists) {
         throw {
@@ -39,6 +39,35 @@ export const register = async (data: IUser): Promise<{ user: UserWithoutPassword
         _id: newUser._id.toString(),
         username: newUser.username,
         email: newUser.email,
+    }
+
+    return { user, token };
+}
+
+
+export const loginUser = async (data: { email: string; password: string }): Promise<{ user: UserWithoutPassword; token: string }> => {
+    const userExists = await UserModel.findOne({ email: data.email });
+    if (!userExists) {
+        throw {
+            statusCode: 400,
+            message: "Invalid credentials!",
+        };
+    }
+
+    const isMatch = await bcrypt.compare(data.password, userExists.password);
+    if (!isMatch) {
+        throw {
+            statusCode: 400,
+            message: "Invalid credentials!",
+        };
+    }
+
+    const token = generateToken(userExists._id.toString());
+
+    const user: UserWithoutPassword = {
+        _id: userExists._id.toString(),
+        username: userExists.username,
+        email: userExists.email,
     }
 
     return { user, token };
